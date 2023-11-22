@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Carousel } from "antd";
 import * as S from "./style";
+import { left } from "src/assets/icons";
 
 const contentStyle: React.CSSProperties = {
   margin: 0,
@@ -31,6 +32,7 @@ export default function Silder(props: Props) {
     <div
       style={{
         position: "relative",
+        width:"100%"
       }}
     >
       <div
@@ -39,24 +41,24 @@ export default function Silder(props: Props) {
           zIndex: 2,
         }}
       >
-        <button
+        <S.BtTrai
           onClick={() => {
             if (refCarousel.current) {
               refCarousel.current.prev();
             }
           }}
         >
-          Prev
-        </button>
-        <button
+        Next
+        </S.BtTrai>
+        <S.BtPhai
           onClick={() => {
             if (refCarousel.current) {
               refCarousel.current.next();
             }
           }}
         >
-          Next
-        </button>
+          Prev
+        </S.BtPhai>
       </div>
       
       <Carousel ref={refCarousel} afterChange={onChange}>

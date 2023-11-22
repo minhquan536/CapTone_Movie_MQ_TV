@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 // import { IIFE } from "src/utils";
 
 // import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { maHTR,maRap } from "src/redux/cartSlice";
+import { maHTR, maRap } from "src/redux/cartSlice";
 
 type Props = {
   data: string[];
@@ -12,24 +12,45 @@ type Props = {
 
 export default function ListRight(props: Props) {
   // console.log(props.data);
-  // const [maHTRs, setMaHTR] = useState("");
   const dispatch = useDispatch();
-
   // console.log(maHTRs);
+  const [focusedImage, setFocusedImage] = useState(null);
+
+  const handleImageClick = (img) => {
+    dispatch(maHTR(img.maHeThongRap));
+    dispatch(maRap(img.mahom));
+  };
+
+  const handleImageFocus = (img) => {
+    setFocusedImage(img.biDanh);
+  };
+
+  const handleImageBlur = () => {
+    setFocusedImage(null);
+  };
+
   return (
     <S.form_r>
-      {props.data.map((img:any) => {
-        console.log(img.tenHeThongRap)
+      {props.data.map((img: any) => {
+        // console.log(img.tenHeThongRap);
         return (
           <div
-            onClick={() => {
-              // setMaHTR(img.maHeThongRap);
-              dispatch(maHTR(img.maHeThongRap));
-              dispatch(maRap(img.mahom));
-            }}
+            onClick={() => handleImageClick(img)}
+            onFocus={() => handleImageFocus(img)}
+            onBlur={handleImageBlur}
+            tabIndex={0} // Cho phép sự kiện onFocus và onBlur hoạt động trên div
             key={img.biDanh}
           >
-            <img src={img.logo} alt="cc" />
+            <img
+            style={{
+              border: focusedImage === img.biDanh ? '2px solid red' : 'none',
+            }}
+              // style={buttonStyle}
+              // onClick={handleButtonClick}
+              // onBlur={handleButtonBlur}
+              src={img.logo}
+              alt="cc"
+            />
           </div>
         );
       })}

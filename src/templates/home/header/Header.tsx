@@ -3,39 +3,34 @@ import clsx from "classnames/bind";
 const cx = clsx.bind(css);
 import React from "react";
 import { Link } from "react-router-dom";
+import * as S from "./index"
 
 function Header() {
   return (
     <header className={cx("header")}>
-      <img src="" alt="" />
+      <S.StyledLink to="/"><h1>Movie</h1></S.StyledLink>
 
       <div className={cx("left")}>
         <div>
-          <Link to={"/"} />
-          Home
+          <S.StyledLink to={"/"}>Home</S.StyledLink>
         </div>
         <div>
-          <Link to={"/"} />
-          Info
+          <S.StyledLink to={"/"}>Detail</S.StyledLink>
         </div>
         <div>
-          <Link to={"/"} />
-          InPost
+          <S.StyledLink to={"/"}>Book</S.StyledLink>
         </div>
         <div>
-          <Link to={"/"} />
-          App
+          <S.StyledLink to={"/"}>Infrom</S.StyledLink>
         </div>
         <div>
           <button className={cx("button")}>
-            <Link to={"/"} />
-            LoGin
+            <S.StyledLink to={"/"}>Login</S.StyledLink>
           </button>
         </div>
         <div>
           <button className={cx("button")}>
-            <Link to={"/"} />
-            Register
+            <S.StyledLink to={"/"}>Register</S.StyledLink>
           </button>
         </div>
       </div>
