@@ -70,13 +70,16 @@ export const getProductById = async (MaPhim: string) => {
   }
 };
 
-export const getProductById_Date = async (maHeThongRap: string,maNhom: string) => {
+export const getProductById_Date = async (maHeThongRap: string,maNhom?: string) => {
   console.log(maHeThongRap)
   try {
     // const resp = await axiosWithoutAuth(`Product/getbyid?id=${id}`);
 
-    const resp = await axiosAuth_2(`/LayThongTinLichChieuHeThongRap${maHeThongRap}?maHeThongRap=${maNhom}`);
+    // const resp = await axiosAuth_2(`/LayThongTinLichChieuHeThongRap${maHeThongRap}?maHeThongRap=${maNhom}`);
 
+    const resp = await axiosAuth_2("/LayThongTinLichChieuHeThongRap",{
+      params: {maHeThongRap},
+    })
     return resp.data.content;
   } catch (error: any) {
     throw new Error(error);

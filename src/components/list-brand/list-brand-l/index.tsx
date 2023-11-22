@@ -5,6 +5,10 @@ import { getProductById_Date } from "src/services/product.service";
 import { useAppSelector } from "src/redux/hooks";
 import { Link } from "react-router-dom";
 
+type Props = {
+  giaTri : string[]
+}
+
 export default function ListLeft() {
   const { maHTR } = useAppSelector((rootReducer) => rootReducer.cartsReducer);
   const { maRap } = useAppSelector((rootReducer) => rootReducer.cartsReducer);
@@ -42,16 +46,17 @@ export default function ListLeft() {
                     />
                   </div>
                   <div>
-                    <h1>{itemPhimChiTiet.tenPhim} </h1>
-
+                    <h1>{itemPhimChiTiet.hot ? <span style={{ fontSize:"3rem", color:"red",}}>HOT</span> : <span></span>}   {itemPhimChiTiet.tenPhim} </h1>
+                    
                     {itemPhimChiTiet.lstLichChieuTheoPhim.map((itemDatVe) => {
                       return (
                         <>
-                          <button>
-                            <Link key={itemDatVe.maLichChieu} to="/bookseat">
+                          <S.LinkBt>
+                            <h3>Giờ chiếu</h3>
+                            <Link style={{color:"green", fontWeight:"500", fontSize:"2rem",}} key={itemDatVe.maLichChieu} to="/bookseat">
                               {itemDatVe.ngayChieuGioChieu}
                             </Link>
-                          </button>
+                          </S.LinkBt>
                         </>
                       );
                     })}

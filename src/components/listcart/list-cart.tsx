@@ -1,16 +1,17 @@
 import React from "react";
 import Card from "./cart/card";
+import * as S from "./index"
 type Props = {
   listMovie: string[];
 }
 
 export default function ListCart(props:Props) {
   return (
-    <div
+    <S.form_card
       style={{
-        display: "flex",
+        display: "grid",
         gap: "4rem",
-        flexWrap: "wrap",
+        gridAutoColumns: "1fr 1fr 1fr"
       }}
     >
       {
@@ -25,6 +26,6 @@ export default function ListCart(props:Props) {
           )
         })
       }
-    </div>
+    </S.form_card>
   );
 }
